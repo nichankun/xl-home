@@ -1,17 +1,17 @@
-// app/page.tsx
-import { LandingClientWrapper } from "@/components/landing-page/landing-client-wrapper";
+import { LandingClientWrapper } from "@/components/landing-page/landing-client-wrapper"
 
-export type PaketKategori = "internet" | "tv";
+export type PaketKategori = "internet" | "tv"
 
 export interface Paket {
-  nama: string;
-  kecepatan: string;
-  harga: string;
-  benefits: string[];
-  popular?: boolean;
-  warna: string;
+  nama: string
+  kecepatan: string
+  harga: string
+  benefits: string[]
+  popular?: boolean
+  warna: string
 }
 
+// Data statis diletakkan di luar komponen agar dioptimalkan penuh oleh React Compiler
 const PAKET: Record<PaketKategori, Paket[]> = {
   internet: [
     {
@@ -97,46 +97,7 @@ const PAKET: Record<PaketKategori, Paket[]> = {
       warna: "#7C3AED",
     },
   ],
-};
-
-const TESTIMONI = [
-  {
-    nama: "Rina Kusuma",
-    kota: "Bekasi",
-    paket: "Paket Smart",
-    pesan:
-      "Sudah 8 bulan pakai XL SATU. Internet di rumah stabil banget, video call kantor nggak pernah putus. Kuota HP-nya juga cukup buat sekeluarga.",
-    avatar: "RK",
-    bintang: 5,
-  },
-  {
-    nama: "Doni Prasetya",
-    kota: "Surabaya",
-    paket: "Paket Family",
-    pesan:
-      "Tadinya langganan 2 provider berbeda. Sekarang cukup satu tagihan. Lebih hemat dan nggak ribet. Proses pemasangannya juga cepat, 2 hari sudah aktif.",
-    avatar: "DP",
-    bintang: 5,
-  },
-  {
-    nama: "Mega Sari",
-    kota: "Bandung",
-    paket: "Joy Smart",
-    pesan:
-      "Anak-anak senang bisa nonton streaming dan main game online tanpa buffering. Android TV Box-nya juga bagus, channelnya banyak.",
-    avatar: "MS",
-    bintang: 5,
-  },
-  {
-    nama: "Rudi Hartono",
-    kota: "Medan",
-    paket: "Paket Basic",
-    pesan:
-      "Harganya terjangkau buat kantong. Yang penting internet stabil dan ada kuota HP. Tim teknisinya juga ramah dan profesional.",
-    avatar: "RH",
-    bintang: 4,
-  },
-];
+}
 
 const FAQ_DATA = [
   {
@@ -163,16 +124,15 @@ const FAQ_DATA = [
     q: "Apakah perangkat dipinjamkan?",
     a: "Ya, router dan (untuk paket Joy) Android TV Box dipinjamkan selama masa berlangganan aktif.",
   },
-];
+]
 
 export default function XLSatuLandingPage() {
   return (
     <div className="bg-[#F8FAFF] text-[#0A0F1E] min-h-screen antialiased selection:bg-[#0057FF]/10">
       <LandingClientWrapper 
         paketData={PAKET} 
-        testimoniData={TESTIMONI} 
         faqData={FAQ_DATA} 
       />
     </div>
-  );
+  )
 }

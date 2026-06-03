@@ -1,31 +1,18 @@
-// components/landing-client-wrapper.tsx
 "use client";
 
 import { useState, useEffect, useRef } from "react";
 import { PaketKategori, Paket } from "@/app/page";
-
 
 import { HeroSection } from "./hero";
 import { StatsSection } from "./stats-section";
 import { FeaturesSection } from "./features-section";
 import { PricingSection } from "./pricing";
 import { CoverageFormSection } from "./coverage-form";
-import { TestimonialsSection } from "./testimonials";
 import { StepsSection } from "./steps";
 import { PromoSection } from "./promo";
-import { FAQSection } from ".//faq";
+import { FAQSection } from "./faq";
 import { CtaFinalSection } from "./cta-final";
-
 import { StickyCtaMobile } from "./sticky-cta";
-
-interface Testimoni {
-  nama: string;
-  kota: string;
-  paket: string;
-  pesan: string;
-  avatar: string;
-  bintang: number;
-}
 
 interface FAQItem {
   q: string;
@@ -34,10 +21,10 @@ interface FAQItem {
 
 interface WrapperProps {
   paketData: Record<PaketKategori, Paket[]>;
-  testimoniData: Testimoni[];
   faqData: FAQItem[];
 }
 
+// Fungsi pembantu diletakkan di luar komponen agar optimal di bawah React Compiler
 function formatWA(paket: string | null, alamat: string, nomorWA: string) {
   const p = paket ? `Paket: *${paket}*\n` : "";
   return `https://wa.me/6281234567890?text=${encodeURIComponent(
@@ -45,13 +32,13 @@ function formatWA(paket: string | null, alamat: string, nomorWA: string) {
   )}`;
 }
 
-export function LandingClientWrapper({ paketData, testimoniData, faqData }: WrapperProps) {
+export function LandingClientWrapper({ paketData, faqData }: WrapperProps) {
   const [kategori, setKategori] = useState<PaketKategori>("internet");
   const [selectedPaket, setSelectedPaket] = useState<string | null>(null);
   const [alamat, setAlamat] = useState("");
   const [nomorWA, setNomorWA] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false); // Variabel scrolled disimpan jika nanti navbar dimasukkan ke sini
   const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -86,14 +73,18 @@ export function LandingClientWrapper({ paketData, testimoniData, faqData }: Wrap
   return (
     <>
       <HeroSection onCekArea={scrollToForm} />
+      
       <StatsSection />
+      
       <FeaturesSection />
+      
       <PricingSection 
         paketData={paketData} 
         kategori={kategori} 
         setKategori={setKategori} 
         onPilihPaket={handlePilihPaket} 
       />
+      
       <CoverageFormSection 
         formRef={formRef}
         selectedPaket={selectedPaket}
@@ -106,11 +97,15 @@ export function LandingClientWrapper({ paketData, testimoniData, faqData }: Wrap
         onSubmit={handleSubmit}
         onReset={handleResetForm}
       />
-      <TestimonialsSection testimoniData={testimoniData} />
+   
       <StepsSection />
+      
       <PromoSection onClaim={scrollToForm} />
+      
       <FAQSection faqData={faqData} />
+      
       <CtaFinalSection onCekArea={scrollToForm} />
+      
       <StickyCtaMobile onCekArea={scrollToForm} />
     </>
   );
