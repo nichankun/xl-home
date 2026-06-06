@@ -84,20 +84,6 @@ export function NavbarSection() {
               </a>
             </Button>
 
-            {/* Tombol Utama Cek Area (Tetap muncul sebagai CTA utama di Mobile) */}
-            <Button
-              asChild
-              className={`inline-flex items-center gap-1.5 rounded-xl font-semibold text-xs sm:text-sm h-auto px-4 py-2 sm:px-5 sm:py-2.5 transition-all no-underline ${
-                scrolled
-                  ? "bg-[#0057FF] text-white shadow-[0_4px_14px_rgba(0,87,255,0.28)] hover:bg-[#003DB8] hover:-translate-y-0.5"
-                  : "bg-white text-[#0057FF] shadow-md hover:bg-white/90 hover:-translate-y-0.5"
-              }`}
-            >
-              <Link href="#cek-area">
-                Cek Area
-              </Link>
-            </Button>
-
             {/* Hamburger Button (Hanya muncul di Mobile/Tablet kecil) */}
             <button
               onClick={() => setIsOpen(!isOpen)}

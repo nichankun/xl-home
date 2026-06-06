@@ -127,12 +127,12 @@ export function HeroSection({ onCekArea }: HeroProps) {
               ))}
             </div>
 
-            {/* CTA Buttons */}
+           {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mb-8 lg:mb-9">
               <Button
                 size="lg"
                 onClick={onCekArea}
-                className="w-full sm:w-auto h-12 rounded-xl bg-white text-[#004BFF] hover:bg-slate-50 hover:-translate-y-px active:translate-y-0 transition-all font-semibold px-7 text-[14px] gap-2 shadow-lg shadow-black/10"
+                className="hidden sm:inline-flex w-full sm:w-auto h-12 rounded-xl bg-white text-[#004BFF] hover:bg-slate-50 hover:-translate-y-px active:translate-y-0 transition-all font-semibold px-7 text-[14px] gap-2 shadow-lg shadow-black/10"
               >
                 <MapPin className="h-4 w-4" />
                 Cek Area Saya
