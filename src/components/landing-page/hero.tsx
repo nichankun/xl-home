@@ -80,9 +80,9 @@ export function Navbar() {
 export function HeroSection({ onCekArea }: HeroProps) {
   return (
     <section
-      className="relative flex min-h-dvh items-center overflow-hidden bg-linear-to-br from-[#001242] via-[#003acc] to-[#0087c4] pt-15"
-      id="hero"
-    >
+  className="relative flex min-h-dvh items-start lg:items-center overflow-hidden bg-linear-to-br from-[#001242] via-[#003acc] to-[#0087c4] pt-15"
+  id="hero"
+>
       {/* Blur ornaments */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute -right-16 -top-20 h-80 w-80 rounded-full bg-[#0096D6]/20 blur-[80px]" />
@@ -90,17 +90,12 @@ export function HeroSection({ onCekArea }: HeroProps) {
         <div className="absolute -left-10 top-1/4 h-56 w-56 rounded-full bg-blue-500/15 blur-[60px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 w-full py-14 sm:py-20 lg:py-0 lg:min-h-[calc(100dvh-60px)] lg:flex lg:items-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 w-full py-20 sm:py-20 lg:py-0 lg:min-h-[calc(100dvh-60px)] lg:flex lg:items-center">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16 w-full">
 
           {/* ── LEFT ── */}
           <div className="w-full lg:max-w-140 flex flex-col items-center text-center lg:items-start lg:text-left">
 
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-3.5 py-1.5 text-[11px] font-medium text-white/90 mb-5">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00FFB8] animate-pulse" />
-              Internet Fiber + Kuota HP Keluarga
-            </div>
 
             {/* Heading */}
             <h1 className="text-[28px] sm:text-[40px] lg:text-[46px] font-black text-white leading-[1.18] tracking-tight mb-4 lg:mb-5">
