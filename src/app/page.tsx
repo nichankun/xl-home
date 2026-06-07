@@ -128,7 +128,9 @@ const FAQ_DATA = [
 
 export default function XLSatuLandingPage() {
   return (
-    <div className="bg-[#F8FAFF] text-[#0A0F1E] min-h-screen antialiased selection:bg-[#0057FF]/10">
+    // FIX: Menghapus class bg, text, min-h, dan antialiased karena sudah ada di layout.tsx.
+    // Hanya menyisakan efek custom untuk selection (highlight text).
+    <div className="selection:bg-[#0057FF]/20 selection:text-[#0A0F1E]">
       <LandingClientWrapper 
         paketData={PAKET} 
         faqData={FAQ_DATA} 

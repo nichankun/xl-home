@@ -15,7 +15,7 @@ interface PricingProps {
 
 export function PricingSection({ paketData, kategori, setKategori, onPilihPaket }: PricingProps) {
   return (
-    <section className="py-20 bg-white" id="paket">
+    <section className="py-20 scroll-mt-20 bg-white" id="paket">
       <div className="max-w-295 mx-auto px-6">
         
         {/* Header Konten */}
@@ -74,26 +74,37 @@ export function PricingSection({ paketData, kategori, setKategori, onPilihPaket 
               )}
 
               {/* Judul & Detail Kecepatan */}
-              <CardHeader className="p-0 border-none shadow-none bg-transparent">
+              {/* FIX: Menghapus class redundan seperti border-none shadow-none bg-transparent dari child shadcn */}
+              <CardHeader className="p-0">
                 <div className={`text-[13px] font-bold tracking-wider uppercase mb-2 ${p.popular ? "text-white/70" : "text-[#64748B]"}`}>
                   {p.nama}
                 </div>
-                <CardTitle className="font-extrabold text-5xl leading-none border-none p-0 shadow-none bg-transparent">
+                {/* FIX: Menggunakan flex dan items-baseline untuk tipografi angka besar & satuan yang lebih rapi */}
+                <CardTitle className="font-extrabold text-5xl leading-none flex items-baseline gap-1.5">
                   {p.kecepatan.replace(" Mbps", "")}
-                  <span className="text-base font-medium"> Mbps</span>
+                  <span className="text-base font-medium">Mbps</span>
                 </CardTitle>
               </CardHeader>
 
               {/* Pembatas / Divider */}
-              <div className={`h-px my-5 ${p.popular ? "bg-white/15" : "bg-[#E2E8F4]"}`} />
+              {/* FIX: Tambahan aria-hidden karena ini elemen dekoratif */}
+              <div 
+                aria-hidden="true" 
+                className={`h-px my-5 ${p.popular ? "bg-white/15" : "bg-[#E2E8F4]"}`} 
+              />
 
               {/* Daftar Keunggulan */}
-              <CardContent className="p-0 flex-1 bg-transparent">
+              <CardContent className="p-0 flex-1">
                 <ul className="list-none flex flex-col gap-2.5 p-0 m-0">
                   {p.benefits.map((b) => (
                     <li className="flex items-start gap-2.5 text-sm" key={b}>
                       <div className={`shrink-0 w-4.5 h-4.5 rounded-full flex items-center justify-center mt-0.5 ${p.popular ? "bg-white/20" : "bg-[#EEF3FF]"}`}>
-                        <Check className={`h-3 w-3 ${p.popular ? "text-white" : "text-[#0057FF]"}`} strokeWidth={2.5} />
+                        {/* FIX: A11y pada icon */}
+                        <Check 
+                          aria-hidden="true" 
+                          className={`h-3 w-3 ${p.popular ? "text-white" : "text-[#0057FF]"}`} 
+                          strokeWidth={2.5} 
+                        />
                       </div>
                       <span className={p.popular ? "text-white/85" : "text-[#374151]"}>{b}</span>
                     </li>
@@ -102,7 +113,7 @@ export function PricingSection({ paketData, kategori, setKategori, onPilihPaket 
               </CardContent>
 
               {/* Footer Harga & Tombol Konversi */}
-              <CardFooter className="p-0 mt-6 flex flex-col items-start w-full border-none shadow-none bg-transparent">
+              <CardFooter className="p-0 mt-6 flex flex-col items-start w-full">
                 <div>
                   <div className={`text-[12px] ${p.popular ? "text-white/60" : "text-[#64748B]"}`}>Mulai dari</div>
                   <div className="font-extrabold text-3xl">
@@ -114,14 +125,15 @@ export function PricingSection({ paketData, kategori, setKategori, onPilihPaket 
                 <Button
                   size="lg"
                   onClick={() => onPilihPaket(p.nama)}
-                  className={`w-full mt-5 h-auto p-3.5 rounded-xl text-md font-semibold border-none transition-all gap-2 ${
+                  className={`w-full mt-5 h-auto p-3.5 rounded-xl text-md font-semibold transition-all gap-2 ${
                     p.popular
                       ? "bg-white text-[#0057FF] hover:bg-white/90"
                       : "bg-[#F8FAFF] text-[#0057FF] border border-[#E2E8F4] hover:bg-[#0057FF] hover:text-white hover:border-[#0057FF]"
                   }`}
                 >
                   Pilih Paket
-                  <ArrowRight className="h-4 w-4 stroke-[2.5]" />
+                  {/* FIX: A11y pada icon */}
+                  <ArrowRight aria-hidden="true" className="h-4 w-4 stroke-[2.5]" />
                 </Button>
               </CardFooter>
             </Card>

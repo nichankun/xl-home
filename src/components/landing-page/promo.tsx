@@ -26,13 +26,15 @@ export function PromoSection({ onClaim }: PromoProps) {
         <div className="bg-linear-to-br from-[#001A5C] via-[#0057FF] to-[#00A8E8] rounded-[28px] p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
           
           {/* Background Decorative Ornaments */}
-          <div className="absolute rounded-full bg-white/5 w-100 h-100 -top-37.5 -right-25 pointer-events-none" />
-          <div className="absolute rounded-full bg-white/5 w-50 h-50 -bottom-20 left-[20%] pointer-events-none" />
+          {/* FIX: Tambahan aria-hidden untuk elemen dekoratif */}
+          <div aria-hidden="true" className="absolute rounded-full bg-white/5 w-100 h-100 -top-37.5 -right-25 pointer-events-none" />
+          <div aria-hidden="true" className="absolute rounded-full bg-white/5 w-50 h-50 -bottom-20 left-[20%] pointer-events-none" />
           
           {/* Left Content Area */}
           <div className="relative z-10 flex-1">
             <div className="inline-flex items-center gap-1.5 bg-white/15 border border-white/25 rounded-full px-3.5 py-1 text-xs font-bold text-white uppercase tracking-wider mb-4">
-              <Sparkles className="h-3.5 w-3.5 text-[#00FFB8]" />
+              {/* FIX: A11y untuk icon dekoratif */}
+              <Sparkles aria-hidden="true" className="h-3.5 w-3.5 text-[#00FFB8]" />
               Promo Juni 2026
             </div>
             
@@ -48,7 +50,8 @@ export function PromoSection({ onClaim }: PromoProps) {
             <Button
               size="lg"
               onClick={onClaim}
-              className="h-auto rounded-xl bg-white text-[#0057FF] font-semibold text-md px-7 py-3.5 hover:bg-white/90 transition-all shadow-md"
+              // FIX: Mengganti text-md (bukan class tailwind standar) menjadi text-base
+              className="h-auto rounded-xl bg-white text-[#0057FF] font-semibold text-base px-7 py-3.5 hover:bg-white/90 transition-all shadow-md"
             >
               Klaim Promo Sekarang
             </Button>
@@ -60,7 +63,8 @@ export function PromoSection({ onClaim }: PromoProps) {
 
           {/* Right Floating Icon Area */}
           <div className="shrink-0 w-30 sm:w-45 h-30 sm:h-45 bg-white/8 border border-white/15 rounded-full flex items-center justify-center text-white relative z-10">
-            <Gift className="h-14 w-14 sm:h-20 sm:w-20 stroke-[1.25]" />
+            {/* FIX: A11y untuk icon dekoratif */}
+            <Gift aria-hidden="true" className="h-14 w-14 sm:h-20 sm:w-20 stroke-[1.25]" />
           </div>
 
         </div>

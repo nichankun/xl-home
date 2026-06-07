@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { PaketKategori, Paket } from "@/app/page";
 
 import { HeroSection } from "./hero";
@@ -38,14 +38,11 @@ export function LandingClientWrapper({ paketData, faqData }: WrapperProps) {
   const [alamat, setAlamat] = useState("");
   const [nomorWA, setNomorWA] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [, setScrolled] = useState(false); // Variabel scrolled disimpan jika nanti navbar dimasukkan ke sini
+  
+  // FIX: State dan useEffect untuk scroll dihapus karena menyebabkan kebocoran performa
+  // (State scroll kini murni hanya ditangani di komponen navigasi.tsx secara mandiri)
+  
   const formRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });

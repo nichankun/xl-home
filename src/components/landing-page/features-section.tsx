@@ -27,7 +27,7 @@ const FEATURES = [
 
 export function FeaturesSection() {
   return (
-    <section className="py-20 bg-[#F8FAFF]" id="fitur">
+    <section className="py-20 scroll-mt-20 bg-[#F8FAFF]" id="fitur">
       <div className="max-w-295 mx-auto px-6">
         
         {/* Header Section */}
@@ -39,35 +39,40 @@ export function FeaturesSection() {
             Solusi Lengkap untuk <em className="not-italic text-[#0057FF]">Keluarga Modern</em>
           </h2>
           <p className="text-base text-[#64748B] leading-relaxed mt-3 max-w-130 mx-auto">
-            Satu layanan yang menjawab semua kebutuhan internet rumah and komunikasi keluarga.
+            {/* FIX: Memperbaiki typo "and" menjadi "dan" */}
+            Satu layanan yang menjawab semua kebutuhan internet rumah dan komunikasi keluarga.
           </p>
         </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
-          {FEATURES.map((item, index) => {
+          {FEATURES.map((item) => {
             const IconComponent = item.icon
             
             return (
               <Card 
-                key={index}
+                // FIX: Menggunakan item.title sebagai key yang lebih stabil dibanding index
+                key={item.title}
                 className="relative overflow-hidden rounded-3xl p-7 border-[#E2E8F4] bg-white transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,87,255,0.1)] hover:border-[#0057FF]/20"
               >
                 {/* Top Border Indicator on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-[#0057FF] to-[#00C2FF] opacity-0 transition-opacity group-hover:opacity-100" />
+                {/* FIX: Tambahan aria-hidden untuk elemen murni dekoratif */}
+                <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-[#0057FF] to-[#00C2FF] opacity-0 transition-opacity group-hover:opacity-100" />
                 
-                {/* Icon Wrapper */}
-                <CardHeader className="p-0 mb-4.5">
+                {/* Icon Wrapper & Title disusun di dalam CardHeader (Standar Komposisi shadcn) */}
+                <CardHeader className="p-0 mb-3 space-y-4.5">
                   <div className="w-13 h-13 rounded-xl bg-linear-to-br from-[#EEF3FF] to-[#DBEAFE] flex items-center justify-center text-[#0057FF]">
-                    <IconComponent className="h-6 w-6 stroke-2" />
+                    {/* FIX: A11y Icon */}
+                    <IconComponent aria-hidden="true" className="h-6 w-6 stroke-2" />
                   </div>
-                </CardHeader>
-
-                {/* Content */}
-                <CardContent className="p-0">
-                  <CardTitle className="font-bold text-base text-[#0A0F1E] mb-2 shadow-none border-none p-0">
+                  {/* FIX: Title dipindahkan ke dalam CardHeader dan menghapus class redundan (border-none, p-0, dll) */}
+                  <CardTitle className="font-bold text-base text-[#0A0F1E]">
                     {item.title}
                   </CardTitle>
+                </CardHeader>
+
+                {/* Content hanya untuk paragraf detail/deskripsi */}
+                <CardContent className="p-0">
                   <p className="text-sm text-[#64748B] leading-relaxed">
                     {item.desc}
                   </p>

@@ -4,6 +4,7 @@ import Link from "next/link"
 const SOCIAL_LINKS = [
   {
     id: "fb",
+    name: "Facebook", // FIX: Tambahan nama untuk aria-label (Aksesibilitas)
     href: "https://facebook.com",
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -13,6 +14,7 @@ const SOCIAL_LINKS = [
   },
   {
     id: "ig",
+    name: "Instagram",
     href: "https://instagram.com",
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -24,6 +26,7 @@ const SOCIAL_LINKS = [
   },
   {
     id: "yt",
+    name: "YouTube",
     href: "https://youtube.com",
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -34,6 +37,7 @@ const SOCIAL_LINKS = [
   },
   {
     id: "tw",
+    name: "X (Twitter)",
     href: "https://x.com",
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -54,7 +58,8 @@ export function FooterSection() {
           {/* Brand Column */}
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="w-9.5 h-9.5 rounded-2xl bg-linear-to-br from-[#0057FF] to-[#00C2FF] flex items-center justify-center font-bold text-white text-md tracking-tight">
+              {/* FIX: Mengganti text-md menjadi text-base sesuai tailwind standar */}
+              <div className="w-9.5 h-9.5 rounded-2xl bg-linear-to-br from-[#0057FF] to-[#00C2FF] flex items-center justify-center font-bold text-white text-base tracking-tight">
                 XL
               </div>
               <span className="font-bold text-[17px] text-white">
@@ -69,63 +74,86 @@ export function FooterSection() {
           {/* Services Column */}
           <div>
             <h4 className="text-xs font-bold text-white/90 tracking-wide uppercase mb-4">Layanan</h4>
-            <div className="flex flex-col gap-2.5">
-              <Link href="#paket" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                Paket Internet
-              </Link>
-              <Link href="#paket" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                Internet + TV
-              </Link>
-              <Link href="#promo" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                Promo
-              </Link>
-            </div>
+            {/* FIX: Mengubah <div> menjadi <ul> untuk Semantik Web (SEO/A11y) */}
+            <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+              <li>
+                <Link href="#paket" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  Paket Internet
+                </Link>
+              </li>
+              <li>
+                <Link href="#paket" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  Internet + TV
+                </Link>
+              </li>
+              <li>
+                <Link href="#promo" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  Promo
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Information Column */}
           <div>
             <h4 className="text-xs font-bold text-white/90 tracking-wide uppercase mb-4">Informasi</h4>
-            <div className="flex flex-col gap-2.5">
-              <Link href="#cara-daftar" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                Cara Daftar
-              </Link>
-              <Link href="#faq" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                FAQ
-              </Link>
-              <Link href="#" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                Kebijakan Privasi
-              </Link>
-              <Link href="#" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                Syarat & Ketentuan
-              </Link>
-            </div>
+            {/* FIX: Mengubah <div> menjadi <ul> */}
+            <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+              <li>
+                <Link href="#cara-daftar" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  Cara Daftar
+                </Link>
+              </li>
+              <li>
+                <Link href="#faq" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  Kebijakan Privasi
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  Syarat & Ketentuan
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Contact Column */}
           <div>
             <h4 className="text-xs font-bold text-white/90 tracking-wide uppercase mb-4">Kontak</h4>
-            <div className="flex flex-col gap-2.5">
-              <a 
-                href="https://wa.me/6281234567890" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline"
-              >
-                WhatsApp Sales
-              </a>
-              <a href="tel:1500817" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                1500 817 (Call Center)
-              </a>
-              <a href="mailto:cs@xl.co.id" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
-                cs@xl.co.id
-              </a>
-            </div>
+            {/* FIX: Mengubah <div> menjadi <ul> */}
+            <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+              <li>
+                <a 
+                  href="https://wa.me/6281234567890" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline"
+                >
+                  WhatsApp Sales
+                </a>
+              </li>
+              <li>
+                <a href="tel:1500817" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  1500 817 (Call Center)
+                </a>
+              </li>
+              <li>
+                <a href="mailto:cs@xl.co.id" className="text-sm text-white/50 transition-colors hover:text-white/90 no-underline">
+                  cs@xl.co.id
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar: Copyright & Socials */}
         <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/35">
+          <p className="text-xs text-white/35 text-center sm:text-left">
             &copy; 2026 XL SATU. Hak cipta dilindungi undang-undang.
           </p>
           
@@ -139,9 +167,12 @@ export function FooterSection() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  // FIX: Menambahkan aria-label agar Screen Reader tahu ini link menuju kemana
+                  aria-label={`Kunjungi halaman ${item.name} kami`}
                   className="w-9 h-9 rounded-xl bg-white/8 border border-white/12 flex items-center justify-center text-white/60 transition-all hover:bg-[#0057FF] hover:border-[#0057FF] hover:text-white"
                 >
-                  <IconComponent className="h-4 w-4" />
+                  {/* FIX: Menambahkan aria-hidden pada icon karena peran label sudah digantikan oleh aria-label di parent <a> */}
+                  <IconComponent aria-hidden="true" className="h-4 w-4" />
                 </a>
               )
             })}

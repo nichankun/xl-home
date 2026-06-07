@@ -1,12 +1,17 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import { Geist } from "next/font/google";
 import "./globals.css";
+
 import { NavbarSection } from "@/components/landing-page/navigasi";
 import { FooterSection } from "@/components/landing-page/footer";
-import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+// Inisialisasi Font
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans"
+});
 
 export const metadata: Metadata = {
   title: "XL SATU - Internet Fiber & Kuota HP Keluarga",
@@ -19,8 +24,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full antialiased scroll-smooth", "font-sans", geist.variable)}>
-      <body className="min-h-full flex flex-col bg-[#F8FAFF] text-[#0A0F1E]">
+    // FIX 1: Mengubah lang="en" menjadi "id" untuk SEO Indonesia
+    // FIX 2: Menambahkan suppressHydrationWarning sesuai standar Next.js & shadcn
+    <html lang="id" className="scroll-smooth" suppressHydrationWarning>
+      <body 
+        // FIX 3: Memindahkan fungsi utilitas cn() ke <body> sesuai arsitektur shadcn/ui
+        className={cn(
+          "min-h-screen flex flex-col bg-[#F8FAFF] text-[#0A0F1E] font-sans antialiased", 
+          geist.variable
+        )}
+      >
         {/* Navbar Global */}
         <NavbarSection />
         

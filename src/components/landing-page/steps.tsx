@@ -1,3 +1,5 @@
+"use client"
+
 // Dikeluarkan dari komponen utama agar dioptimalkan penuh oleh React Compiler
 const STEPS = [
   { 
@@ -38,28 +40,32 @@ export function StepsSection() {
         </div>
 
         {/* Grid Alur Tahapan */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 relative">
+        {/* FIX: Mengubah <div> menjadi <ol> (Ordered List) untuk Semantik dan Aksesibilitas (A11y) yang lebih baik */}
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 relative">
           
           {/* Garis Penghubung antar Langkah (Hanya Muncul di Layar Desktop) */}
-          <div className="hidden lg:block absolute top-7 left-[12%] right-[12%] h-0.5 bg-linear-to-r from-[#0057FF] to-[#00C2FF] opacity-20 pointer-events-none" />
+          {/* FIX: Tambahan aria-hidden untuk elemen garis yang murni dekoratif */}
+          <div aria-hidden="true" className="hidden lg:block absolute top-7 left-[12%] right-[12%] h-0.5 bg-linear-to-r from-[#0057FF] to-[#00C2FF] opacity-20 pointer-events-none" />
           
           {STEPS.map((step) => (
-            <div className="text-center relative group" key={step.num}>
+            /* FIX: Mengubah <div> menjadi <li> sebagai bagian dari Ordered List */
+            <li className="text-center relative group" key={step.num}>
               {/* Lingkaran Angka dengan Efek Hover Mikro */}
               <div className="w-14 h-14 rounded-full bg-linear-to-br from-[#0057FF] to-[#00C2FF] flex items-center justify-center mx-auto mb-5 font-extrabold text-xl text-white shadow-[0_8px_24px_rgba(0,87,255,0.3)] relative z-10 transition-transform duration-300 group-hover:scale-105">
                 {step.num}
               </div>
               
               {/* Judul & Deskripsi Langkah */}
-              <div className="font-bold text-base text-[#0A0F1E] mb-2">
+              {/* FIX: Menggunakan elemen heading (<h3>) untuk hierarki SEO dan A11y */}
+              <h3 className="font-bold text-base text-[#0A0F1E] mb-2">
                 {step.title}
-              </div>
+              </h3>
               <p className="text-sm text-[#64748B] leading-relaxed px-2">
                 {step.desc}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
 
       </div>
     </section>

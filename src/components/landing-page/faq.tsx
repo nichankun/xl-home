@@ -18,7 +18,12 @@ interface FAQProps {
 
 export function FAQSection({ faqData }: FAQProps) {
   return (
-    <section className="py-20 bg-[#F8FAFF]" id="faq">
+    <section 
+      className="py-20 scroll-mt-20 bg-[#F8FAFF]" 
+      id="faq"
+      /* FIX: A11y Landmark, menghubungkan section dengan judul utamanya */
+      aria-labelledby="faq-heading"
+    >
       <div className="max-w-295 mx-auto px-6">
         
         {/* Header Section */}
@@ -26,7 +31,10 @@ export function FAQSection({ faqData }: FAQProps) {
           <div className="text-[12px] font-bold tracking-widest uppercase text-[#0057FF] mb-3">
             FAQ
           </div>
-          <h2 className="font-extrabold text-3xl sm:text-4xl text-[#0A0F1E] leading-tight tracking-tight">
+          <h2 
+            id="faq-heading" 
+            className="font-extrabold text-3xl sm:text-4xl text-[#0A0F1E] leading-tight tracking-tight"
+          >
             Pertanyaan <em className="not-italic text-[#0057FF]">Umum</em>
           </h2>
         </div>
@@ -34,10 +42,11 @@ export function FAQSection({ faqData }: FAQProps) {
         {/* Accordion Wrapper */}
         <div className="max-w-180 mx-auto mt-12 bg-white rounded-3xl px-8 py-4 border border-[#E2E8F4] shadow-xs">
           <Accordion type="single" collapsible className="w-full">
-            {faqData.map((item, index) => (
+            {/* FIX: Menggunakan item.q (pertanyaan) yang unik sebagai ganti index */}
+            {faqData.map((item) => (
               <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
+                key={item.q} 
+                value={item.q}
                 className="border-b border-[#E2E8F4]/50 last:border-0 py-1"
               >
                 {/* Bagian Pertanyaan */}

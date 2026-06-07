@@ -16,26 +16,34 @@ const STATS = [
 
 export function StatsSection() {
   return (
-    <div className="bg-white border-b border-[#E2E8F4]">
+    // FIX: Menggunakan tag <section> dengan aria-label untuk landmark aksesibilitas
+    <section aria-label="Statistik Layanan XL SATU" className="bg-white border-b border-[#E2E8F4]">
       <div className="max-w-295 mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-3">
+        
+        {/* FIX: Menggunakan <dl> (Description List) untuk pasangan Key-Value statistik */}
+        <dl className="grid grid-cols-1 sm:grid-cols-3">
           {STATS.map((item, index) => (
             <div 
-              key={index} 
-              className={`py-8 px-6 text-center border-b sm:border-b-0 border-[#E2E8F4] ${
+              // FIX: Menggunakan nilai unik (label) sebagai key, bukan index
+              key={item.label} 
+              className={`flex flex-col py-8 px-6 text-center border-b sm:border-b-0 border-[#E2E8F4] ${
                 index !== STATS.length - 1 ? "sm:border-r" : ""
               }`}
             >
-              <div className="font-extrabold text-4xl text-[#0057FF] leading-none">
+              {/* FIX: <dd> untuk Value. Flex order digunakan agar posisinya di atas secara visual */}
+              <dd className="order-1 font-extrabold text-4xl text-[#0057FF] leading-none">
                 {item.value}
-              </div>
-              <div className="text-xs text-[#64748B] mt-1.5 font-medium">
+              </dd>
+              
+              {/* FIX: <dt> untuk Term/Label. Flex order digunakan agar posisinya di bawah secara visual */}
+              <dt className="order-2 text-xs text-[#64748B] mt-1.5 font-medium">
                 {item.label}
-              </div>
+              </dt>
             </div>
           ))}
-        </div>
+        </dl>
+
       </div>
-    </div>
+    </section>
   )
 }
